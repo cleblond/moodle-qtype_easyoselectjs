@@ -192,6 +192,10 @@ M.qtype_easyoselectjs = {
             var pastePromise = marvinController.sketcherInstance
                 .importStructure("mrv", document.getElementById(
                     'id_structure').value);
+            myobj = JSON.parse(document.getElementById('id_answer_0').value);
+            var pastePromise = marvinController.sketcherInstance
+                        .setSelection(myobj);
+
         });
         var MarvinControllerClass = (function() {
             function MarvinControllerClass(sketcherInstance) {
