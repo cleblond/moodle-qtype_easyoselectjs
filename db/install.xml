@@ -9,8 +9,7 @@
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="question"/>
         <FIELD NAME="question" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Foreign key references question.id." PREVIOUS="id" NEXT="answers"/>
         <FIELD NAME="answers" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Redundant. Comma-separated list of question_answer ids. SELECT id FROM question_answers WHERE question = ? ORDER BY id." PREVIOUS="question" NEXT="hideproducts"/>
-      </FIELDS>
-        <FIELD NAME="structure" TYPE="longtext" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="mrv format string of structure data" PREVIOUS="answers"/>
+        <FIELD NAME="structure" TYPE="text" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="mrv format string of structure data" PREVIOUS="answers"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="question"/>
