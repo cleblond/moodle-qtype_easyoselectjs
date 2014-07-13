@@ -34,18 +34,8 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $mform->addElement('static', 'answersinstruct',
             get_string('correctanswers', 'qtype_easyoselectjs'), get_string('filloutoneanswer', 'qtype_easyoselectjs'));
         $mform->closeHeaderBefore('answersinstruct');
-        //$menu = array(
-        //    get_string('caseshowproducts', 'qtype_easyoselectjs'),
-        //    get_string('casenoshowproducts', 'qtype_easyoselectjs')
-        //);
-        //$mform->addElement('textarea', 'structure', get_string('caseshowornoshowproducts', 'qtype_easyoselectjs'), $menu);
         $mform->setType('structure', PARAM_RAW);
         $mform->addElement('hidden', 'structure', "", array('id' => 'id_structure'));
-        //$menu = array(
-        //    get_string('ordernotimportant', 'qtype_easyoselectjs'),
-        //    get_string('orderimportant', 'qtype_easyoselectjs')
-        //);
-        //$mform->addElement('select', 'orderimportant', get_string('caseorderimportant', 'qtype_easyoselectjs'), $menu);
         $mform->addElement('html', html_writer::start_tag('div', array(
             'style' => 'width:650px;',
             'id' => 'appletdiv'
@@ -55,7 +45,8 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         )));
         $mform->addElement('html', html_writer::start_tag('small'));
         $easyoselectjshomeurl = 'http://www.chemaxon.com';
-        $mform->addElement('html', html_writer::link($easyoselectjshomeurl, get_string('easyoselectjseditor', 'qtype_easyoselectjs')));
+        $mform->addElement('html', html_writer::link($easyoselectjshomeurl,
+            get_string('easyoselectjseditor', 'qtype_easyoselectjs')));
         $mform->addElement('html', html_writer::empty_tag('br'));
         $mform->addElement('html', html_writer::tag('span', get_string('author', 'qtype_easyoselectjs'), array(
             'class' => 'easyoselectjsauthor'

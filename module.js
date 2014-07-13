@@ -3,14 +3,14 @@ M.qtype_easyoselectjs = {
     showmyresponse: function(Y, moodle_version, slot) {
         var refreshBut = Y.one("#myresponse" + slot, slot);
         refreshBut.on("click", function() {
-            var newxmlStr = document.getElementById('my_answer' +
-                slot).value;
+            myobj = JSON.parse(document.getElementById('my_answer' + slot).value);
+
             MarvinJSUtil.getEditor("#EASYOSELECT" + slot).then(
                 function(sketcherInstance) {
                     marvinController = new MarvinControllerClass(
                         sketcherInstance);
                     var pastePromise = marvinController.sketcherInstance
-                        .importStructure("mrv", newxmlStr);
+                        .setSelection(myobj);
                 });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(
@@ -33,173 +33,13 @@ M.qtype_easyoselectjs = {
     showcorresponse: function(Y, moodle_version, slot) {
         var refreshBut = Y.one("#corresponse" + slot, slot);
         refreshBut.on("click", function() {
-            var newxmlStr = document.getElementById(
-                'correct_answer' + slot).value;
+            corobj = JSON.parse(document.getElementById('correct_answer' + slot).value);
             MarvinJSUtil.getEditor("#EASYOSELECT" + slot).then(
                 function(sketcherInstance) {
                     marvinController = new MarvinControllerClass(
                         sketcherInstance);
                     var pastePromise = marvinController.sketcherInstance
-                        .importStructure("mrv", newxmlStr);
-                });
-            var MarvinControllerClass = (function() {
-                function MarvinControllerClass(
-                    sketcherInstance) {
-                    this.sketcherInstance =
-                        sketcherInstance;
-                    this.init();
-                }
-                MarvinControllerClass.prototype.init =
-                    function init() {
-                        this.sketcherInstance.setDisplaySettings({
-                            "cpkColoring": true,
-                            "lonePairsVisible": true
-                        });
-                    };
-                return MarvinControllerClass;
-            }());
-        });
-    },
-    init_showarrowsrev: function(Y, moodle_version, slot) {
-        var handleSuccess = function(o) {};
-        var handleFailure = function(o) {
-            /*failure handler code*/
-        };
-        var callback = {
-            success: handleSuccess,
-            failure: handleFailure
-        };
-        if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
-            YAHOO = Y.YUI2;
-        }
-        var refreshBut = Y.one("#showorderrev" + slot, slot);
-        refreshBut.on("click", function() {
-            var xmlStr = document.getElementById(
-                'correct_answer' + slot).value;
-            ///parse xml string
-            if (window.DOMParser) {
-                parser = new DOMParser();
-                xmlDoc = parser.parseFromString(xmlStr,
-                    "text/xml");
-                // alert('not IE');
-            } else // Internet Explorer
-            {
-                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-                xmlDoc.async = false;
-                xmlDoc.loadXML(xmlStr);
-            }
-            meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
-            var arrowtot = meflowarrows.length;
-            var currentarrow = Number(document.getElementById(
-                'curarrow' + slot).value);
-            currentarrow = currentarrow - 1;
-            if (currentarrow < 0) {
-                currentarrow = arrowtot;
-            }
-            document.getElementById('curarrow' + slot).value =
-                Number(currentarrow);
-            xAll = xmlDoc.getElementsByTagName('*');
-            var i = 5,
-                j, y, counter = 0,
-                newxmlStr;
-            for (j = xAll.length - 1; j >= 0; j -= 1) {
-                y = xAll[j];
-                if (y.nodeName == 'MEFlow') {
-                    if (counter == arrowtot - currentarrow) {
-                        j = 0;
-                    } else {
-                        y.parentNode.removeChild(y);
-                    }
-                    counter = counter + 1;
-                }
-            }
-            newxmlStr = new XMLSerializer().serializeToString(
-                xmlDoc);
-            MarvinJSUtil.getEditor("#EASYOSELECT" + slot).then(
-                function(sketcherInstance) {
-                    marvinController = new MarvinControllerClass(
-                        sketcherInstance);
-                    var pastePromise = marvinController.sketcherInstance
-                        .importStructure("mrv", newxmlStr);
-                });
-            var MarvinControllerClass = (function() {
-                function MarvinControllerClass(
-                    sketcherInstance) {
-                    this.sketcherInstance =
-                        sketcherInstance;
-                    this.init();
-                }
-                MarvinControllerClass.prototype.init =
-                    function init() {
-                        this.sketcherInstance.setDisplaySettings({
-                            "cpkColoring": true,
-                            "lonePairsVisible": true
-                        });
-                    };
-                return MarvinControllerClass;
-            }());
-        });
-    },
-    init_showarrows: function(Y, moodle_version, slot) {
-        var handleSuccess = function(o) {};
-        var handleFailure = function(o) {
-            /*failure handler code*/
-        };
-        var callback = {
-            success: handleSuccess,
-            failure: handleFailure
-        };
-        if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
-            YAHOO = Y.YUI2;
-        }
-        var refreshBut = Y.one("#showorder" + slot, slot);
-        refreshBut.on("click", function() {
-            var xmlStr = document.getElementById(
-                'correct_answer' + slot).value;
-            ///parse xml string
-            if (window.DOMParser) {
-                parser = new DOMParser();
-                xmlDoc = parser.parseFromString(xmlStr,
-                    "text/xml");
-            } else // Internet Explorer
-            {
-                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-                xmlDoc.async = false;
-                xmlDoc.loadXML(xmlStr);
-            }
-            meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
-            var arrowtot = meflowarrows.length;
-            var currentarrow = Number(document.getElementById(
-                'curarrow' + slot).value);
-            currentarrow = currentarrow + 1;
-            if (currentarrow > arrowtot) {
-                currentarrow = 0;
-            }
-            document.getElementById('curarrow' + slot).value =
-                Number(currentarrow);
-            xAll = xmlDoc.getElementsByTagName('*');
-            var i = 5,
-                j, y, counter = 0,
-                newxmlStr;
-            for (j = xAll.length - 1; j >= 0; j -= 1) {
-                y = xAll[j];
-                if (y.nodeName == 'MEFlow') {
-                    if (counter == arrowtot - currentarrow) {
-                        j = 0;
-                    } else {
-                        y.parentNode.removeChild(y);
-                    }
-                    counter = counter + 1;
-                }
-            }
-            newxmlStr = new XMLSerializer().serializeToString(
-                xmlDoc);
-            MarvinJSUtil.getEditor("#EASYOSELECT" + slot).then(
-                function(sketcherInstance) {
-                    marvinController = new MarvinControllerClass(
-                        sketcherInstance);
-                    var pastePromise = marvinController.sketcherInstance
-                        .importStructure("mrv", newxmlStr);
+                        .setSelection(corobj);
                 });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(
@@ -406,7 +246,7 @@ M.qtype_easyoselectjs.init_getanswerstring = function(Y, moodle_version) {
                         Y.one('#id_structure')
                             .set('value',
                                 source);
-                    }); 
+                    });
                 });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(

@@ -33,10 +33,10 @@ $string['pluginname_link'] = 'question/type/easyoselect';
 $string['pluginnameadding'] = 'Adding an Select Atoms or Molecules question';
 $string['pluginnameediting'] = 'Editing a Select Atoms or Molecules question';
 $string['pluginnamesummary'] = 'Students must select predefined atoms, molecules or functional groups.  You can ask questions such as; <ul><li>Select all the tertiary carbons below.</li><li>Select all chiral carbons in the following tsructure?</li><li>Select the longest chain of carbon atoms?</li></ul>';
-$string['easyoselect_options'] = 'Path to Marvin Applet installation';
+$string['easyoselectjs_options'] = 'Path to Marvin Applet installation';
 $string['enablejava'] = 'Tried but failed to load Marvinsketch editor. You have not got a JAVA runtime environment working in your browser. You will need one to attempt this question.';
 $string['enablejavaandjavascript'] = 'Loading Marvinsketch editor.... If this message does not get replaced by the Marvin editor then you have not got javascript and a JAVA runtime environment working in your browser.';
-$string['configeasyoselectoptions'] = 'The path of your marvin installation relative to your web root.  (e.g. If your moodle is installed at /var/www/moodle and you install your marvin at /var/www/marvin then you should use the default /marvin)';
+$string['configeasyoselectjsoptions'] = 'The path of your marvin installation relative to your web root.  (e.g. If your moodle is installed at /var/www/moodle and you install your marvin at /var/www/marvin then you should use the default /marvin)';
 $string['filloutoneanswer'] = '<b><ul>
 <li>Fill out the question text above asking the student to select something</li>
 <li>Draw a structure in the Marvin Applet below.</li>

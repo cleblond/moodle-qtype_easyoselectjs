@@ -30,7 +30,6 @@ class qtype_easyoselectjs_question extends qtype_shortanswer_question {
         if (!array_key_exists('answer', $response) || is_null($response['answer'])) {
             return false;
         }
-        
         return self::compare_string_with_wildcard(
                 $response['answer'], $answer->answer, false);
     }
