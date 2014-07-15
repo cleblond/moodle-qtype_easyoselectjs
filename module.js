@@ -214,17 +214,6 @@ M.qtype_easyoselectjs = {
     }
 }
 M.qtype_easyoselectjs.init_getanswerstring = function(Y, moodle_version) {
-    var handleSuccess = function(o) {};
-    var handleFailure = function(o) {
-        /*failure handler code*/
-    };
-    var callback = {
-        success: handleSuccess,
-        failure: handleFailure
-    };
-    if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
-        YAHOO = Y.YUI2;
-    }
     Y.all(".id_insert").each(function(node) {
         node.on("click", function() {
             var marvinController,
@@ -232,9 +221,7 @@ M.qtype_easyoselectjs.init_getanswerstring = function(Y, moodle_version) {
             MarvinJSUtil.getEditor("#MSketch").then(
                 function(sketcherInstance) {
                     marvinController = new MarvinControllerClass(
-                        sketcherInstance, $(
-                            "#chbx-coloring"), $(
-                            "#chbx-carbonVis"));
+                        sketcherInstance);
                     var buttonid = node.getAttribute(
                         'id');
                     var textfieldid = 'id_answer_' +
@@ -253,16 +240,9 @@ M.qtype_easyoselectjs.init_getanswerstring = function(Y, moodle_version) {
                     });
                 });
             var MarvinControllerClass = (function() {
-                function MarvinControllerClass(
-                    sketcherInstance,
-                    cpkCheckbox, carbonCheckbox
-                ) {
+                function MarvinControllerClass(sketcherInstance) {
                     this.sketcherInstance =
                         sketcherInstance;
-                    this.cpkCheckbox =
-                        cpkCheckbox;
-                    this.carbonCheckbox =
-                        carbonCheckbox;
                     this.init();
                 }
                 MarvinControllerClass.prototype.init =
