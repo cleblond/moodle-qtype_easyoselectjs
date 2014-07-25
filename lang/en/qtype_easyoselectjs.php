@@ -27,7 +27,7 @@
 $string['addmoreanswerblanks'] = 'Blanks for {no} More Answers';
 $string['answermustbegiven'] = 'You must enter an answer if there is a grade or feedback.';
 $string['answerno'] = 'Answer {$a}';
-$string['pluginname'] = 'Select Atoms or Molecules';
+$string['pluginname'] = 'Select Atoms or Molecules (MarvinJS)';
 $string['pluginname_help'] = 'Students must select predefined atoms, molecules or functional groups.  You can ask questions such as; <ul><li>Select all the tertiary carbons below.</li><li>Select all chiral carbons in the following tsructure?</li><li>Select the longest chain of carbon atoms?</li></ul>';
 $string['pluginname_link'] = 'question/type/easyoselect';
 $string['pluginnameadding'] = 'Adding an Select Atoms or Molecules question';

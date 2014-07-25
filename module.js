@@ -163,8 +163,7 @@ M.qtype_easyoselectjs = {
                 this.sketcherInstance = sketcherInstance;
                 this.sketcherInstance.setDisplaySettings({
                     "cpkColoring": true,
-                    "lonePairsVisible": true,
-                    "toolbars": "education"
+                    "lonePairsVisible": true
                 });
                 this.init();
             }
@@ -205,8 +204,7 @@ M.qtype_easyoselectjs = {
             MarvinControllerClass.prototype.init = function init() {
                 this.sketcherInstance.setDisplaySettings({
                     "cpkColoring": true,
-                    "lonePairsVisible": true,
-                    "toolbars": "education"
+                    "lonePairsVisible": true
                 });
             };
             return MarvinControllerClass;

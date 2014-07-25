@@ -13,9 +13,8 @@ Once you have done that, visit your Moodle admin page - the database
 tables should automatically be upgraded to include an extra table for
 the EasyOChem Mechanism question type.
 
-You must download a recent copy of Marvinsketch from www.chemaxon.com 
-(free for academic use) and intall it in folder named "marvin" at your web root.
-Alternatively you could edit the php scripts if your marvin installation is elsewhere.
+You must download a recent copy of Marvinsketch from www.chemaxon.com.  You can
+set the path to MarvinJS in the admin panel..
 
 
 USAGE:
