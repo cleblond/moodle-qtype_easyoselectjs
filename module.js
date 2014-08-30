@@ -75,8 +75,7 @@ M.qtype_easyoselectjs = {
             MarvinJSUtil.getEditor("#" + appletid).then(function(
                 sketcherInstance) {
                 marvinController = new MarvinControllerClass(
-                    sketcherInstance, $("#chbx-coloring"),
-                    $("#chbx-carbonVis"));
+                    sketcherInstance);
             });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(sketcherInstance,
@@ -151,8 +150,8 @@ M.qtype_easyoselectjs = {
         MarvinJSUtil.getEditor("#" + appletid).then(function(
             sketcherInstance) {
             marvinController = new MarvinControllerClass(
-                sketcherInstance, $("#chbx-coloring"), $(
-                    "#chbx-carbonVis"));
+                sketcherInstance);
+            console.log(document.getElementById(stripped_answer_id).value);
             var pastePromise = marvinController.sketcherInstance
                 .importStructure("mrv", document.getElementById(
                     stripped_answer_id).value);
