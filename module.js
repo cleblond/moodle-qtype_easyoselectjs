@@ -151,7 +151,6 @@ M.qtype_easyoselectjs = {
             sketcherInstance) {
             marvinController = new MarvinControllerClass(
                 sketcherInstance);
-            console.log(document.getElementById(stripped_answer_id).value);
             var pastePromise = marvinController.sketcherInstance
                 .importStructure("mrv", document.getElementById(
                     stripped_answer_id).value);
