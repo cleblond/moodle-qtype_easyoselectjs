@@ -9,12 +9,8 @@ This is a Moodle question type. It should come as a self-contained
 "easyoselectjs" folder which should be placed inside the "question/type" folder
 which already exists on your Moodle web server.
 
-Once you have done that, visit your Moodle admin page - the database 
-tables should automatically be upgraded to include an extra table for
-the EasyOChem Mechanism question type.
-
-You must download a recent copy of Marvinsketch from www.chemaxon.com.  You can
-set the path to MarvinJS in the admin panel..
+You must download a recent copy of MarvinJS from www.chemaxon.com.  You can
+set the path to MarvinJS in the admin panel.
 
 
 USAGE:
@@ -22,4 +18,5 @@ USAGE:
 With the MarvinJS Selection question type the instructor draws a structure,
 set of structures or reactions and selects certain objects (atoms, molecules etc).
 The student must then select the same objects.  You can ask questions such as
-"Select all chiral centers in the following structures?" or "Choose the nucleophile in the following reaction?"
+"Select all chiral centers in the following structures?" or "Choose the nucleophile 
+in the following reaction?"
