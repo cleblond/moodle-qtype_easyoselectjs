@@ -24,11 +24,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-<<<<<<< HEAD
 $plugin->version   = 2014091800;
-=======
-$plugin->version   = 2014083000;
->>>>>>> e7d1fd39f343585aa6dadfd3535b74ea31273cee
 $plugin->requires  = 2012062500;
 $plugin->cron      = 0;
 $plugin->component = 'qtype_easyoselectjs';
