@@ -29,8 +29,9 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $PAGE->requires->css('/question/type/easyoselectjs/easyoselectjs_styles.css');
         $marvinjsconfig = get_config('qtype_easyoselectjs_options');
         $marvinjspath   = $marvinjsconfig->path;
-        $PAGE->requires->js(new moodle_url('http://' . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/promise-0.1.1.min.js'));
-        $PAGE->requires->js(new moodle_url('http://' . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
+        $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
+        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/promise-0.1.1.min.js'));
+        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
         $mform->addElement('static', 'answersinstruct',
             get_string('correctanswers', 'qtype_easyoselectjs'), get_string('filloutoneanswer', 'qtype_easyoselectjs'));
         $mform->closeHeaderBefore('answersinstruct');

@@ -40,8 +40,9 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $correctanswerid = "correct_answer" . $qa->get_slot();
         $marvinjsconfig  = get_config('qtype_easyoselectjs_options');
         $marvinjspath    = $marvinjsconfig->path;
-        $PAGE->requires->js(new moodle_url('http://' . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/promise-0.1.1.min.js'));
-        $PAGE->requires->js(new moodle_url('http://' . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
+        $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
+        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/promise-0.1.1.min.js'));
+        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
         if (preg_match('/_____+/', $questiontext, $matches)) {
             $placeholder = $matches[0];
         }
@@ -147,7 +148,8 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
     protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness) {
         global $PAGE, $CFG;
         $marvinjsconfig = get_config('qtype_easyoselectjs_options');
-        $marvinjspath   = "http://" . $_SERVER['HTTP_HOST'] . $marvinjsconfig->path;
+        $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
+        $marvinjspath   = $protocol . $_SERVER['HTTP_HOST'] . $marvinjsconfig->path;
         $topnode        = 'div.que.easyoselectjs#q' . $qa->get_slot();
         $feedbackimage  = '';
         if ($correctness) {

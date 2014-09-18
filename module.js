@@ -75,12 +75,10 @@ M.qtype_easyoselectjs = {
             MarvinJSUtil.getEditor("#" + appletid).then(function(
                 sketcherInstance) {
                 marvinController = new MarvinControllerClass(
-                    sketcherInstance, $("#chbx-coloring"),
-                    $("#chbx-carbonVis"));
+                    sketcherInstance);
             });
             var MarvinControllerClass = (function() {
-                function MarvinControllerClass(sketcherInstance,
-                    cpkCheckbox, carbonCheckbox) {
+                function MarvinControllerClass(sketcherInstance) {
                     this.sketcherInstance =
                         sketcherInstance;
                     this.init();
@@ -90,15 +88,8 @@ M.qtype_easyoselectjs = {
             }());
             var inputdiv = Y.one(topnode);
             inputdiv.ancestor('form').on('submit', function() {
-                selection = marvinController.sketcherInstance.getSelection()
+                selection = marvinController.sketcherInstance.getSelection();
                 Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
-
-/*                exportPromise = marvinController.sketcherInstance
-                    .exportStructure("mrv", null)
-                exportPromise.then(function(source) {
-                    Y.one(topnode + ' input.answer').set(
-                        'value', source);
-                });  */
             }, this);
         }
     },
@@ -151,15 +142,13 @@ M.qtype_easyoselectjs = {
         MarvinJSUtil.getEditor("#" + appletid).then(function(
             sketcherInstance) {
             marvinController = new MarvinControllerClass(
-                sketcherInstance, $("#chbx-coloring"), $(
-                    "#chbx-carbonVis"));
+                sketcherInstance);
             var pastePromise = marvinController.sketcherInstance
                 .importStructure("mrv", document.getElementById(
                     stripped_answer_id).value);
         });
         var MarvinControllerClass = (function() {
-            function MarvinControllerClass(sketcherInstance,
-                cpkCheckbox, carbonCheckbox) {
+            function MarvinControllerClass(sketcherInstance) {
                 this.sketcherInstance = sketcherInstance;
                 this.sketcherInstance.setDisplaySettings({
                     "cpkColoring": true,
