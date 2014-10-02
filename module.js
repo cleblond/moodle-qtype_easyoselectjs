@@ -87,10 +87,12 @@ M.qtype_easyoselectjs = {
                 return MarvinControllerClass;
             }());
             var inputdiv = Y.one(topnode);
-            inputdiv.ancestor('form').on('submit', function() {
+            if (inputdiv.ancestor('form') != null) {
+                inputdiv.ancestor('form').on('submit', function() {
                 selection = marvinController.sketcherInstance.getSelection();
                 Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
-            }, this);
+                }, this);
+            }
         }
     },
     loadXMLString: function(txt) {
