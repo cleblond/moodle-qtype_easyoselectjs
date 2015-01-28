@@ -61,13 +61,13 @@ M.qtype_easyoselectjs = {
     },
     insert_easyoselectjs_applet: function(Y, toreplaceid, appletid, name,
         topnode, feedback, readonly, stripped_answer_id, moodleurl,
-        marvinpath) {
+        marvinpath, prevattempt, currentanswer) {
         var javaparams = ['mol', Y.one(topnode + ' input.mol').get(
             'value')];
         var easyoselectjsoptions = new Array();
         if (!this.show_java(toreplaceid, appletid, name, 600, 460,
             'chemaxon.marvin.applet.JMSketchLaunch', javaparams,
-            stripped_answer_id, moodleurl, marvinpath)) {
+            stripped_answer_id, moodleurl, marvinpath, prevattempt, currentanswer)) {
             this.show_error(Y, topnode);
         } else {
             var marvinController,
@@ -128,7 +128,7 @@ M.qtype_easyoselectjs = {
     doneie6focus: 0,
     doneie6focusapplets: 0,
     show_java: function(id, appletid, name, width, height, appletclass,
-        javavars, stripped_answer_id, moodleurl, marvinpath) {
+        javavars, stripped_answer_id, moodleurl, marvinpath, prevattempt, currentanswer) {
         var warningspan = document.getElementById(id);
         warningspan.innerHTML = '';
         var newIframe = document.createElement("iframe");
@@ -145,9 +145,10 @@ M.qtype_easyoselectjs = {
             sketcherInstance) {
             marvinController = new MarvinControllerClass(
                 sketcherInstance);
-            var pastePromise = marvinController.sketcherInstance
-                .importStructure("mrv", document.getElementById(
-                    stripped_answer_id).value);
+            var pastePromise = marvinController.sketcherInstance.importStructure("mrv", document.getElementById(stripped_answer_id).value);
+            if (prevattempt == true) {
+            marvinController.sketcherInstance.setSelection(JSON.parse(currentanswer));
+            }
         });
         var MarvinControllerClass = (function() {
             function MarvinControllerClass(sketcherInstance) {
@@ -246,3 +247,4 @@ M.qtype_easyoselectjs.init_getanswerstring = function(Y, moodle_version) {
         });
     });
 };
+

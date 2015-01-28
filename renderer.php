@@ -152,6 +152,13 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $marvinjspath   = $protocol . $_SERVER['HTTP_HOST'] . $marvinjsconfig->path;
         $topnode        = 'div.que.easyoselectjs#q' . $qa->get_slot();
         $feedbackimage  = '';
+        $currentanswer    = $qa->get_last_qt_var('answer');
+        echo $currentanswer;
+        $prevattempt = false;
+        if ($currentanswer != null) {
+        $prevattempt = true;
+        }
+        
         if ($correctness) {
             $feedbackimage = $this->feedback_image($this->fraction_for_last_response($qa));
         }
@@ -167,7 +174,9 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
             $readonly,
             $strippedanswerid,
             $CFG->wwwroot,
-            $marvinjspath
+            $marvinjspath,
+            $prevattempt,
+            $currentanswer
         ), false);
     }
     protected function fraction_for_last_response(question_attempt $qa) {
