@@ -153,7 +153,6 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $topnode        = 'div.que.easyoselectjs#q' . $qa->get_slot();
         $feedbackimage  = '';
         $currentanswer    = $qa->get_last_qt_var('answer');
-        echo $currentanswer;
         $prevattempt = false;
         if ($currentanswer != null) {
         $prevattempt = true;
