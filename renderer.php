@@ -41,7 +41,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $marvinjsconfig  = get_config('qtype_easyoselectjs_options');
         $marvinjspath    = $marvinjsconfig->path;
         $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
-        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/promise-0.1.1.min.js'));
+        $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/gui/lib/promise-0.1.1.min.js'));
         $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
         if (preg_match('/_____+/', $questiontext, $matches)) {
             $placeholder = $matches[0];
