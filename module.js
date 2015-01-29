@@ -86,6 +86,25 @@ M.qtype_easyoselectjs = {
                 MarvinControllerClass.prototype.init = function init() {};
                 return MarvinControllerClass;
             }());
+
+
+                var inputform = Y.one(topnode).ancestor('form');
+
+                var nextbutton = inputform.one('input[type=submit]');
+                nextbutton.on('mousedown', function(e) {
+                    selection = marvinController.sketcherInstance.getSelection();
+                    Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
+                }, this);
+
+                var navbuttons = Y.all('a[id^="quiznavbutton"]');
+                navbuttons.on('mousedown', function(e) {
+                    selection = marvinController.sketcherInstance.getSelection();
+                    Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
+                }, this);
+
+
+
+
             var inputdiv = Y.one(topnode);
             if (inputdiv.ancestor('form') != null) {
                 inputdiv.ancestor('form').on('submit', function() {
