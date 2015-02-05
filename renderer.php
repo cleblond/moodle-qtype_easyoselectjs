@@ -35,60 +35,47 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $question        = $qa->get_question();
         $structure  = $question->structure;
         $questiontext    = $question->format_questiontext($qa);
-        $placeholder     = false;
-        $myanswerid      = "my_answer" . $qa->get_slot();
-        $correctanswerid = "correct_answer" . $qa->get_slot();
+        $uniqid = uniqid();
+        $myanswerid      = "my_answer" . $uniqid;
+        $correctanswerid = "correct_answer" . $uniqid;
         $marvinjsconfig  = get_config('qtype_easyoselectjs_options');
         $marvinjspath    = $marvinjsconfig->path;
         $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
         $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/gui/lib/promise-0.1.1.min.js'));
         $PAGE->requires->js(new moodle_url($protocol . $_SERVER['HTTP_HOST'] . $marvinjspath . '/js/marvinjslauncher.js'));
-        if (preg_match('/_____+/', $questiontext, $matches)) {
-            $placeholder = $matches[0];
-        }
-        $name2  = 'EASYOSELECT' . $qa->get_slot();
-        $result = '';
-        if ($placeholder) {
-            $toreplace    = html_writer::tag('span', get_string('enablejavaandjavascript', 'qtype_easyoselectjs'), array(
-                'class' => 'ablock'
-            ));
-            $questiontext = substr_replace($questiontext, $toreplace, strpos($questiontext, $placeholder), strlen($placeholder));
-        }
-        $result .= html_writer::tag('div', $questiontext, array(
+        $result = html_writer::tag('div', $questiontext, array(
             'class' => 'qtext'
         ));
         if ($options->readonly) {
             $result .= html_writer::tag('input', '', array(
-                'id' => 'myresponse' . $qa->get_slot(),
+                'id' => 'myresponse' . $uniqid,
                 'type' => 'button',
                 'value' => 'My Response'
             ));
             $result .= html_writer::tag('input', '', array(
-                'id' => 'corresponse' . $qa->get_slot(),
+                'id' => 'corresponse' . $uniqid,
                 'type' => 'button',
                 'value' => 'Correct Answer'
             ));
             $this->page->requires->js_init_call('M.qtype_easyoselectjs.showmyresponse', array(
                 $CFG->version,
-                $qa->get_slot()
+                $uniqid
             ));
             $this->page->requires->js_init_call('M.qtype_easyoselectjs.showcorresponse', array(
                 $CFG->version,
-                $qa->get_slot()
+                $uniqid
             ));
         }
-        $toreplaceid = 'applet' . $qa->get_slot();
+        $toreplaceid = 'applet' . $uniqid;
         $toreplace   = html_writer::tag('span', get_string('enablejavaandjavascript', 'qtype_easyoselectjs'), array(
             'id' => $toreplaceid
         ));
-        if (!$placeholder) {
-            $answerlabel = html_writer::tag('span', get_string('answer', 'qtype_easyoselectjs', ''), array(
+        $answerlabel = html_writer::tag('span', get_string('answer', 'qtype_easyoselectjs', ''), array(
                 'class' => 'answerlabel'
             ));
-            $result .= html_writer::tag('div', $answerlabel . $toreplace, array(
+        $result .= html_writer::tag('div', $answerlabel . $toreplace, array(
                 'class' => 'ablock'
             ));
-        }
         if ($qa->get_state() == question_state::$invalid) {
             $lastresponse = $this->get_last_response($qa);
             $result .= html_writer::nonempty_tag('div', $question->get_validation_error($lastresponse), array(
@@ -97,7 +84,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         }
         if (!$options->readonly) {
             $question   = $qa->get_question();
-            $strippedanswerid = "stripped_answer" . $qa->get_slot();
+            $strippedanswerid = "stripped_answer" . $uniqid;
             $result .= html_writer::tag('textarea', $structure, array(
                 'id' => $strippedanswerid,
                 'style' => 'display:none;',
@@ -105,7 +92,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
             ));
         }
         if ($options->readonly) {
-            $strippedanswerid = "stripped_answer" . $qa->get_slot();
+            $strippedanswerid = "stripped_answer" . $uniqid;
             $result .= html_writer::tag('textarea', $structure, array(
                 'id' => $strippedanswerid,
                 'style' => 'display:none;',
@@ -127,7 +114,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $result .= html_writer::tag('div', $this->hidden_fields($qa), array(
             'class' => 'inputcontrol'
         ));
-        $this->require_js($toreplaceid, $qa, $options->readonly, $options->correctness);
+        $this->require_js($toreplaceid, $qa, $options->readonly, $options->correctness, $uniqid);
         return $result;
     }
     protected function remove_xml_tags($xmlstring, $tag) {
@@ -145,7 +132,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $question = $qa->get_question();
         return $question->usecase . $qa->get_question()->format_generalfeedback($qa);
     }
-    protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness) {
+    protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness, $uniqid) {
         global $PAGE, $CFG;
         $marvinjsconfig = get_config('qtype_easyoselectjs_options');
         $protocol = (empty($_SERVER['HTTPS']) or $_SERVER['HTTPS'] == 'off') ? 'http://' : 'https://';
@@ -161,9 +148,9 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         if ($correctness) {
             $feedbackimage = $this->feedback_image($this->fraction_for_last_response($qa));
         }
-        $name             = 'EASYOSELECT' . $qa->get_slot();
-        $appletid         = 'easyoselectjs' . $qa->get_slot();
-        $strippedanswerid = "stripped_answer" . $qa->get_slot();
+        $name             = 'EASYOSELECT' . $uniqid;
+        $appletid         = 'easyoselectjs' . $uniqid;
+        $strippedanswerid = "stripped_answer" . $uniqid;
         $PAGE->requires->js_init_call('M.qtype_easyoselectjs.insert_easyoselectjs_applet', array(
             $toreplaceid,
             $name,
