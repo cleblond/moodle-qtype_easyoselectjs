@@ -91,27 +91,30 @@ M.qtype_easyoselectjs = {
                 var inputform = Y.one(topnode).ancestor('form');
 
                 var nextbutton = inputform.one('input[type=submit]');
-                nextbutton.on('mousedown', function(e) {
+                nextbutton.on(['mousedown', 'touchstart'], function(e) {
+                    selection = marvinController.sketcherInstance.getSelection();
+                    Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
+                }, this);
+
+                var previewsubmit = inputform.one('input[name="finish"]');;
+                previewsubmit.on(['mousedown', 'touchstart'], function(e) {
                     selection = marvinController.sketcherInstance.getSelection();
                     Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
                 }, this);
 
                 var navbuttons = Y.all('a[id^="quiznavbutton"]');
-                navbuttons.on('mousedown', function(e) {
+                navbuttons.on(['mousedown', 'touchstart'], function(e) {
                     selection = marvinController.sketcherInstance.getSelection();
                     Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
                 }, this);
-
-
-
-
+/*
             var inputdiv = Y.one(topnode);
             if (inputdiv.ancestor('form') != null) {
                 inputdiv.ancestor('form').on('submit', function() {
                 selection = marvinController.sketcherInstance.getSelection();
                 Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
                 }, this);
-            }
+            } */
         }
     },
     loadXMLString: function(txt) {
