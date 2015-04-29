@@ -198,6 +198,15 @@ M.qtype_easyoselectjs = {
         newIframe.width = "600";
         newIframe.height = "460";
         warningspan.appendChild(newIframe);
+
+        var answernumSpan = document.createElement("span");
+        answernumSpan.className = ".answernumber";
+        answernumSpan.id = "answernumber";
+        answernumSpan.innerHTML = "Currently viewing answer 1";
+        warningspan.appendChild(answernumSpan);
+
+
+
         //import structure
         var marvinController;
         MarvinJSUtil.getEditor("#MSketch").then(function(
@@ -301,6 +310,8 @@ M.qtype_easyoselectjs.init_viewanswerstring = function(Y, moodle_version) {
                     var newxmlStr = JSON.parse(Y.one('#' + textfieldid).get('value'));
                     var pastePromise = marvinController.sketcherInstance
                         .setSelection(newxmlStr);
+                    var answernumber = parseInt(buttonid.substr(buttonid.length - 1), 10) + 1;
+                    Y.one('#answernumber').set('innerHTML', 'Currently viewing answer ' + answernumber);
                 });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(
