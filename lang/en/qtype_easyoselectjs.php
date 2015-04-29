@@ -65,3 +65,4 @@ $string['pleaseenterananswer'] = 'Please enter an answer.';
 $string['easyoselectjseditor'] = 'MarvinJS Editor';
 $string['author'] = 'Question type courtesy of<br />Carl LeBlond,<br />Indiana University of Pennsylvania';
 $string['insert'] = 'Insert from editor';
+$string['view'] = 'View in editor';

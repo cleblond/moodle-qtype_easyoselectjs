@@ -67,13 +67,21 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $PAGE->requires->js_init_call('M.qtype_easyoselectjs.init_getanswerstring', array(
             $CFG->version
         ));
+        $PAGE->requires->js_init_call('M.qtype_easyoselectjs.init_viewanswerstring', array(
+            $CFG->version
+        ));
     }
     protected function get_per_answer_fields($mform, $label, $gradeoptions, &$repeatedoptions, &$answersoption) {
         $repeated     = parent::get_per_answer_fields($mform, $label, $gradeoptions, $repeatedoptions, $answersoption);
         $scriptattrs  = 'class = id_insert';
+        $viewbutton = $mform->createElement('button', 'view',
+            get_string('view', 'qtype_easyonamejs'), 'class = id_view');
+        array_splice($repeated, 1, 0, array(
+            $viewbutton
+        ));
         $insertbutton = $mform->createElement('button', 'insert',
             get_string('insertfromeditor', 'qtype_easyoselectjs'), $scriptattrs);
-        array_splice($repeated, 2, 0, array(
+        array_splice($repeated, 1, 0, array(
             $insertbutton
         ));
         return $repeated;
