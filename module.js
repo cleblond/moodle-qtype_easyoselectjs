@@ -97,10 +97,12 @@ M.qtype_easyoselectjs = {
                 }, this);
 
                 var previewsubmit = inputform.one('input[name="finish"]');;
+                if (previewsubmit != null) {
                 previewsubmit.on(['mousedown', 'touchstart'], function(e) {
                     selection = marvinController.sketcherInstance.getSelection();
                     Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
                 }, this);
+                }
 
                 var navbuttons = Y.all('a[id^="quiznavbutton"]');
                 navbuttons.on(['mousedown', 'touchstart'], function(e) {
