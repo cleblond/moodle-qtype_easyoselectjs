@@ -191,13 +191,6 @@ M.qtype_easyoselectjs = {
     insert_applet: function(Y, moodleurl, marvinpath) {
         var warningspan = document.getElementById('appletdiv');
         warningspan.innerHTML = '';
-        var newIframe = document.createElement("iframe");
-        newIframe.src = marvinpath + "/editor.html";
-        newIframe.className = "sketcher-frame";
-        newIframe.id = "MSketch";
-        newIframe.width = "600";
-        newIframe.height = "460";
-        warningspan.appendChild(newIframe);
 
         var answernumSpan = document.createElement("span");
         answernumSpan.className = ".answernumber";
@@ -205,7 +198,13 @@ M.qtype_easyoselectjs = {
         answernumSpan.innerHTML = "Currently viewing answer 1";
         warningspan.appendChild(answernumSpan);
 
-
+        var newIframe = document.createElement("iframe");
+        newIframe.src = marvinpath + "/editor.html";
+        newIframe.className = "sketcher-frame";
+        newIframe.id = "MSketch";
+        //newIframe.width = "600";
+        //newIframe.height = "460";
+        warningspan.appendChild(newIframe);
 
         //import structure
         var marvinController;

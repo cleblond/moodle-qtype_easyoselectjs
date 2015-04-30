@@ -38,8 +38,9 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $mform->setType('structure', PARAM_RAW);
         $mform->addElement('hidden', 'structure', "", array('id' => 'id_structure'));
         $mform->addElement('html', html_writer::start_tag('div', array(
-            'style' => 'width:650px;',
-            'id' => 'appletdiv'
+         //   'style' => 'width:650px;',
+            'id' => 'appletdiv',
+            'class' => 'easyomechjs resizable'
         )));
         $mform->addElement('html', html_writer::start_tag('div', array(
             'style' => 'float: left;font-style: italic ;'
