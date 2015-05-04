@@ -89,14 +89,15 @@ M.qtype_easyoselectjs = {
 
 
                 var inputform = Y.one(topnode).ancestor('form');
-
+                if (inputform != null) {
                 var nextbutton = inputform.one('input[type=submit]');
                 nextbutton.on(['mousedown', 'touchstart'], function(e) {
                     selection = marvinController.sketcherInstance.getSelection();
                     Y.one(topnode + ' input.answer').set('value', JSON.stringify(selection));
                 }, this);
+                var previewsubmit = inputform.one('input[name="finish"]');
+                }
 
-                var previewsubmit = inputform.one('input[name="finish"]');;
                 if (previewsubmit != null) {
                 previewsubmit.on(['mousedown', 'touchstart'], function(e) {
                     selection = marvinController.sketcherInstance.getSelection();
