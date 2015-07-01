@@ -18,7 +18,7 @@
  *
  * @package    qtype
  * @subpackage easyoselectjs
- * @copyright  2014 onwards Carl LeBlond 
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -26,12 +26,12 @@ $generatedfeedback = "";
 /**
  * Generates the output for easyoselectjs questions.
  *
- * @copyright  2014 onwards Carl LeBlond 
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_easyoselectjs_renderer extends qtype_renderer {
     public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
-        global $CFG, $PAGE;
+        global $CFG, $PAGE, $OUTPUT;
         $question        = $qa->get_question();
         $structure  = $question->structure;
         $questiontext    = $question->format_questiontext($qa);
@@ -115,6 +115,14 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
             'class' => 'inputcontrol'
         ));
         $this->require_js($toreplaceid, $qa, $options->readonly, $options->correctness, $uniqid);
+                $result .= html_writer::start_tag('div', array('class'=> 'license'));
+        $result .= html_writer::start_tag('a', array('href'=> 'http://www.chemaxon.com'));
+        $result .= html_writer::empty_tag('img', array(
+        'src'=>$OUTPUT->pix_url('chemaxon', 'qtype_easyoselectjs'),
+        'alt'=>'ChemAxon License Logo',
+        'class' => 'logo'));
+        $result .= html_writer::end_tag('a');
+        $result .= html_writer::end_tag('div');
         return $result;
     }
     protected function remove_xml_tags($xmlstring, $tag) {
@@ -144,7 +152,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         if ($currentanswer != null) {
         $prevattempt = true;
         }
-        
+
         if ($correctness) {
             $feedbackimage = $this->feedback_image($this->fraction_for_last_response($qa));
         }
