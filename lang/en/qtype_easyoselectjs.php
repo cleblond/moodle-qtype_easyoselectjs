@@ -19,7 +19,7 @@
  *
  * @package    qtype
  * @subpackage easyoselectjs
- * @copyright  2014 onwards Carl LeBlond 
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -66,3 +66,7 @@ $string['easyoselectjseditor'] = 'MarvinJS Editor';
 $string['author'] = 'Question type courtesy of<br />Carl LeBlond,<br />Indiana University of Pennsylvania';
 $string['insert'] = 'Insert from editor';
 $string['view'] = 'View in editor';
+$string['my_response'] = 'My Response';
+$string['correct_answer'] = 'Correct Answer';
+$string['viewing_answer1'] = 'Currently viewing answer 1';
+$string['viewing_answer'] = 'Currently viewing answer';

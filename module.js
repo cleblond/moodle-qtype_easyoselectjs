@@ -196,7 +196,7 @@ M.qtype_easyoselectjs = {
         var answernumSpan = document.createElement("span");
         answernumSpan.className = ".answernumber";
         answernumSpan.id = "answernumber";
-        answernumSpan.innerHTML = "Currently viewing answer 1";
+        answernumSpan.innerHTML = M.util.get_string('viewing_answer1', 'qtype_easyoselectjs');
         warningspan.appendChild(answernumSpan);
 
         var newIframe = document.createElement("iframe");
@@ -311,7 +311,7 @@ M.qtype_easyoselectjs.init_viewanswerstring = function(Y, moodle_version) {
                     var pastePromise = marvinController.sketcherInstance
                         .setSelection(newxmlStr);
                     var answernumber = parseInt(buttonid.substr(buttonid.length - 1), 10) + 1;
-                    Y.one('#answernumber').set('innerHTML', 'Currently viewing answer ' + answernumber);
+                    Y.one('#answernumber').set('innerHTML', M.util.get_string('viewing_answer', 'qtype_easyoselectjs')+' ' + answernumber);
                 });
             var MarvinControllerClass = (function() {
                 function MarvinControllerClass(

@@ -18,7 +18,7 @@
  *
  * @package    qtype
  * @subpackage easyoselectjs
- * @copyright  2014 onwards Carl LeBlond 
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -26,7 +26,7 @@ $generatedfeedback = "";
 /**
  * Generates the output for easyoselectjs questions.
  *
- * @copyright  2014 onwards Carl LeBlond 
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_easyoselectjs_renderer extends qtype_renderer {
@@ -50,12 +50,12 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
             $result .= html_writer::tag('input', '', array(
                 'id' => 'myresponse' . $uniqid,
                 'type' => 'button',
-                'value' => 'My Response'
+                'value' => get_string('my_response', 'qtype_easyoselectjs')
             ));
             $result .= html_writer::tag('input', '', array(
                 'id' => 'corresponse' . $uniqid,
                 'type' => 'button',
-                'value' => 'Correct Answer'
+                'value' => get_string('correct_answer', 'qtype_easyoselectjs')
             ));
             $this->page->requires->js_init_call('M.qtype_easyoselectjs.showmyresponse', array(
                 $CFG->version,
@@ -144,7 +144,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         if ($currentanswer != null) {
         $prevattempt = true;
         }
-        
+
         if ($correctness) {
             $feedbackimage = $this->feedback_image($this->fraction_for_last_response($qa));
         }
