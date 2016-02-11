@@ -44,3 +44,7 @@ display: inline;
 	overflow: hidden;
 	background-color: transparent;
 }
+
+.que.easyoselectjs .license .logo{
+    margin-top: 20px;
+}
