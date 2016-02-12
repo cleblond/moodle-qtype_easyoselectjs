@@ -203,8 +203,8 @@ M.qtype_easyoselectjs = {
         newIframe.src = marvinpath + "/editor.html";
         newIframe.className = "sketcher-frame";
         newIframe.id = "MSketch";
-        //newIframe.width = "600";
-        //newIframe.height = "460";
+        newIframe.width = "600";
+        newIframe.height = "460";
         warningspan.appendChild(newIframe);
 
         //import structure

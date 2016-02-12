@@ -40,7 +40,7 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $mform->addElement('html', html_writer::start_tag('div', array(
          //   'style' => 'width:650px;',
             'id' => 'appletdiv',
-            'class' => 'easyoselectjs resizable'
+            'class' => 'easyomechjs resizable'
         )));
         $mform->addElement('html', html_writer::start_tag('div', array(
             'style' => 'float: left;font-style: italic ;'
@@ -76,7 +76,7 @@ class qtype_easyoselectjs_edit_form extends qtype_shortanswer_edit_form {
         $repeated     = parent::get_per_answer_fields($mform, $label, $gradeoptions, $repeatedoptions, $answersoption);
         $scriptattrs  = 'class = id_insert';
         $viewbutton = $mform->createElement('button', 'view',
-            get_string('view', 'qtype_easyoselectjs'), 'class = id_view');
+            get_string('view', 'qtype_easyonamejs'), 'class = id_view');
         array_splice($repeated, 1, 0, array(
             $viewbutton
         ));
