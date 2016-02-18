@@ -46,7 +46,7 @@ class qtype_easyoselectjs_renderer extends qtype_renderer {
         $result = html_writer::tag('div', $questiontext, array(
             'class' => 'qtext'
         ));
-        if ($options->readonly) {
+        if ($options->correctness) {
             $result .= html_writer::tag('input', '', array(
                 'id' => 'myresponse' . $uniqid,
                 'type' => 'button',
